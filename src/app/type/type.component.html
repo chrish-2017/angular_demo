@@ -1,0 +1,63 @@
+<button pButton type="button" (click)="add()" class="ui-button-info" icon="fa-plus" label="新增"></button>
+<button pButton type="button" (click)="del()" class="ui-button-danger" icon="fa-trash" label="删除"></button>
+<p-dataTable [value]="types" [(selection)]="selections" [rows]="10" [paginator]="true" [loading]="loading" loadingIcon="fa-spinner">
+  <p-column selectionMode="multiple" [style]="{'width':'80px'}"></p-column>
+  <p-column field="" header="序号" [style]="{'width':'80px'}">
+    <ng-template pTemplate="body" let-index="rowIndex">
+      <span>{{index+1}}</span>
+    </ng-template>
+  </p-column>
+  <p-column field="typeName" header="名称"></p-column>
+  <p-column field="image" header="图片">
+    <ng-template pTemplate="body" let-col let-data="rowData">
+      <img src="{{data[col.field].imgName}}" style="height: 100px;">
+    </ng-template>
+  </p-column>
+  <p-column field="" header="操作">
+    <ng-template pTemplate="body" let-data="rowData">
+      <button pButton type="button" (click)="edit(data)" class="ui-button-primary" icon="fa-edit" label="编辑"></button>
+    </ng-template>
+  </p-column>
+</p-dataTable>
+<p-confirmDialog header="信息" icon="fa fa-exclamation-circle" width="300" #cd>
+  <p-footer>
+    <button pButton type="button" label="确定" (click)="cd.accept()"></button>
+  </p-footer>
+</p-confirmDialog>
+<p-dialog header="新增" [(visible)]="display" [width]="500" modal="true">
+  <form #form="ngForm" class="form-horizontal" enctype="multipart/form-data">
+    <input type="hidden" name="id" [(ngModel)]="id">
+    <input type="hidden" name="imageId" [(ngModel)]="imageId">
+    <div class="form-group">
+      <label class="col-xs-3 control-label">分类名称</label>
+      <div class="col-xs-8">
+        <input type="text" name="typeName" [(ngModel)]="typeName" class="form-control" placeholder="请输入类型名称">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-xs-3 control-label">添加图片</label>
+      <div class="col-xs-8">
+        <span class="help-block">建议上传图片分辨率:160*160</span>
+        <div class="file-upload-component">
+          <div class="img-display">
+            <div class="img-item">
+              <div class="img-box" *ngIf="preview">
+                <img src="{{preview}}">
+                <span class="delBtn" (click)="delImg()" aria-hidden="true">&times;</span>
+              </div>
+            </div>
+          </div>
+          <div class="up-group">
+            <input type="file" class="file-input" (change)="uploadPreviewFile($event)" >
+            <button class="btn btn-primary" type="button"><i class="fa fa-cloud-upload"></i> 上传图片</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <p-footer>
+    <button pButton type="button" label="确定" (click)="confirm(form.value)"></button>
+    <button pButton type="button" label="取消" (click)="cancel()"></button>
+  </p-footer>
+</p-dialog>
+

@@ -1,0 +1,108 @@
+/* You can add global styles to this file, and also import other style files */
+html{
+  height: 100%;
+}
+body{
+  height: 100%;
+  background-color: #f8f8f8;
+  overflow: hidden;
+}
+.ui-panelmenu {
+  width: 235px;
+  margin-right: 20px;
+  background: #fff;
+}
+body .ui-panelmenu .ui-panelmenu-panel{
+  border: none!important;
+}
+.ui-panelmenu .ui-panelmenu-content{
+  border: none;
+  padding: 0;
+}
+.ui-panelmenu .ui-menuitem{
+  margin: 0;
+}
+body .ui-panelmenu .ui-panelmenu-header a, body .ui-panelmenu .ui-panelmenu-content .ui-menuitem-link {
+  padding: 10px 15px;
+}
+body .ui-panelmenu .ui-panelmenu-header:hover {
+  background-color: #f2f6f9!important;
+}
+body .ui-panelmenu .ui-panelmenu-header:hover a, body .ui-panelmenu .ui-panelmenu-header:hover .fa{
+  color: #5b9bd1!important;
+}
+body .ui-panelmenu .ui-panelmenu-header.ui-state-active{
+  background-color: #f2f6f9;
+}
+body .ui-panelmenu .ui-panelmenu-header.ui-state-active a, .ui-panelmenu-header.ui-state-active .fa{
+  color: #5b9bd1!important;
+}
+body .ui-panelmenu .ui-panelmenu-content .ui-menuitem-link:hover{
+  background-color: #f2f6f9;
+}
+body .ui-panelmenu .ui-panelmenu-content .ui-menuitem-link:hover{
+  color: #5b9bd1;
+}
+body .ui-state-active, body .ui-state-highlight{
+  background-color: #f2f6f9!important;
+  color: #5b9bd1!important;
+}
+
+
+body .ui-datatable .ui-widget-content{
+  border: none;
+}
+body .ui-datatable .ui-widget-header{
+  border: none;
+}
+.ui-datatable .ui-datatable-thead>tr>th, .ui-datatable .ui-datatable-tfoot>tr>td, .ui-datatable .ui-datatable-data>tr>td{
+  border-width: 0;
+}
+body .ui-datatable .ui-datatable-data > tr > td{
+  text-align: center;
+}
+.ui-datatable .ui-selection-column .ui-chkbox-box, .ui-datatable .ui-selection-column .ui-radiobutton-box{
+  margin: 0 auto;
+}
+.ui-datatable thead tr{
+  border-bottom: 2px solid #ddd;
+}
+body .ui-datatable .ui-datatable-thead > tr > th, body .ui-datatable .ui-datatable-tfoot > tr > td{
+  font-weight: bold;
+}
+.ui-paginator{
+  margin-top: 20px;
+}
+body .ui-paginator .ui-paginator-first, body .ui-paginator .ui-paginator-prev, body .ui-paginator .ui-paginator-next, body .ui-paginator .ui-paginator-last{
+  border: 1px solid #ccc;
+}
+body .ui-datatable .ui-datatable-data tr td.ui-editable-column input {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+
+.ui-dialog-footer{
+  border: none!important;
+}
+body .ui-dialog .ui-dialog-titlebar{
+  border: none;
+  background-color: #f8f8f8;
+}
+body .ui-dialog .ui-dialog-titlebar .ui-dialog-title{
+  font-size: 1em;
+  font-weight: normal;
+}
+.ui-dialog .ui-dialog-content{
+  overflow: hidden;
+}
+body .ui-widget-overlay{
+  background-color: #666;
+  opacity: 0.5;
+}
+
+
+.ui-editor-container{
+  width: 80%!important;
+  max-width: 1000px;
+  margin-left: 110px;
+}

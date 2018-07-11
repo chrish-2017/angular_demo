@@ -1,0 +1,51 @@
+.bui_main_header{
+  background:#fff;
+  padding:0 15px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.dl-title {
+  float: left;
+  color: #00A6EF;
+  font-family: "Microsoft YaHei";
+  margin-left: 12px;
+  font-size: 18px;
+  line-height: 70px;
+}
+.dl-title a {
+  color: #c1d5ec;
+}
+.lp-title-port img {
+  height: 40px;
+}
+.dl-log {
+  color: #00A6EF;
+  float: right;
+  padding: 18px 16px 0 0;
+}
+.dl-log-quit {
+  padding-left: 8px;
+}
+.bui_main_body {
+  height: calc(100% - 90px);
+  overflow: hidden;
+}
+#bui_main_menu,#bui_main_tab{
+  height:100%;
+}
+#bui_main_menu{
+  width:235px;
+  margin-right: 20px;
+  background:#fff;
+}
+#bui_main_tab{
+  width:calc(100% - 255px);
+  padding: 20px;
+  background:#fff;
+  overflow-y: auto;
+}
+#bui_main_title{
+  padding: 15px 15px;
+  font-size: 15px;
+  color:#5C9ACF;
+}

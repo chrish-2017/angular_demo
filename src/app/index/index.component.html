@@ -1,0 +1,19 @@
+<div class="bui_main_header">
+  <div class="dl-title">
+    <a><span class="lp-title-port"><img src="../../assets/imgs/header-logo.png"></span></a>
+  </div>
+  <div class="dl-log">
+    欢迎您，<span class="dl-log-user">admin</span>&nbsp; <a href="" title="退出系统" class="dl-log-quit">
+    <span class="fa fa-sign-out" aria-hidden="true"></span>
+  </a>
+  </div>
+</div>
+<div class="bui_main_body" id="bui_main_body">
+  <div id="bui_main_menu" class="pull-left">
+    <h4 id="bui_main_title">列表</h4>
+    <p-panelMenu [model]="items"></p-panelMenu>
+  </div>
+  <div id="bui_main_tab" class="pull-right">
+    <router-outlet></router-outlet>
+  </div>
+</div>

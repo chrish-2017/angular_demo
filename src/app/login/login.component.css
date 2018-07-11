@@ -1,0 +1,34 @@
+.bg{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url(../../assets/imgs/background.jpg);
+  background-size: cover;}
+.form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  background: #f2f6f9;
+  padding: 30px;
+}
+.form .title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #00A6EF;
+}
+.form-group .control-label{
+  color: #737373;
+  font-weight: normal;
+}
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}

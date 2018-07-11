@@ -1,0 +1,174 @@
+<form #form="ngForm" class="form-horizontal">
+  <div class="form-group">
+    <label class="control-label">商品名称</label>
+    <div class="">
+      <input id="goodsName" name="goodsName" [(ngModel)]="goodsName" type="text" class="form-control" placeholder="输入商品名称">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label">所属分类</label>
+    <div class="">
+      <input id="goodsType" [(ngModel)]="goodsType" [ngModelOptions]="{standalone: true}" type="text" class="form-control" (click)="select()">
+      <input id="goodsTypeId" name="goodsType.id" [(ngModel)]="goodsTypeId" type="hidden" class="form-control">
+    </div>
+  </div>
+  <div class="form-group wider">
+    <label class="control-label">封面图片</label>
+    <div class="">
+      <p class="help-block">(建议上传图片分辨率：200*200)</p>
+      <div class="multiple-file-upload-component">
+        <div class="img-display">
+          <div class="img-item" *ngFor="let image of images; let i=index">
+            <div class="img-box" *ngIf="image.imgType == 2">
+              <img src="{{image.imgName}}">
+              <span class="delBtn" (click)="delImg(i)" aria-hidden="true">&times;</span>
+            </div>
+          </div>
+        </div>
+        <div class="up-group">
+          <input type="file" class="file-input" (change)="uploadPreviewFile($event, 2)" >
+          <button class="btn btn-primary" type="button"><i class="fa fa-cloud-upload"></i> 上传图片</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group wider">
+    <label class="control-label">轮播图片</label>
+    <div class="">
+      <p class="help-block">(建议上传图片分辨率：790*300)</p>
+      <div class="multiple-file-upload-component">
+        <div class="img-display">
+          <div class="img-item" *ngFor="let image of images; let i=index">
+            <div class="img-box" *ngIf="image.imgType == 1">
+              <img src="{{image.imgName}}">
+              <span class="delBtn" (click)="delImg(i)" aria-hidden="true">&times;</span>
+            </div>
+          </div>
+        </div>
+        <div class="up-group">
+          <input type="file" class="file-input" multiple (change)="uploadPreviewFile($event, 1)" >
+          <button class="btn btn-primary" type="button"><i class="fa fa-cloud-upload"></i> 上传图片</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label">商品特点</label>
+    <div class="">
+      <input id="goodsTitle" name="goodsTitle" [(ngModel)]="goodsTitle" type="text" class="form-control" placeholder="">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label">运费</label>
+    <div class="">
+      <input id="expressPrice" name="expressPrice" [(ngModel)]="expressPrice" type="text" class="form-control" placeholder="请填写运费价格，不填默认0元">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label">预警上线</label>
+    <div class="">
+      <input id="maxInventory" name="maxInventory" [(ngModel)]="maxInventory" type="number" class="form-control" placeholder="">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label">预警下限</label>
+    <div class="">
+      <input id="minInventory" name="minInventory" [(ngModel)]="minInventory" type="number" class="form-control" placeholder="">
+    </div>
+  </div>
+  <div class="form-group wider">
+    <label class="control-label">商品规格</label>
+    <div class="full-screen border-dashed">
+      <button pButton type="button" (click)="add()" class="ui-button-success" label="新增"></button>
+      <p-dataTable [value]="goodsAttrs" [editable]="true" emptyMessage="没有找到匹配的记录">
+        <p-column field="" header="序号" [style]="{'width':'80px'}">
+          <ng-template pTemplate="body" let-index="rowIndex">
+            <span>{{index+1}}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="attrValue" header="规格" [editable]="true"></p-column>
+        <p-column field="inventory" header="库存" [editable]="true">
+          <ng-template let-col let-data="rowData" pTemplate="body">
+            {{ data[col.field].inventoryAmount }}
+          </ng-template>
+          <ng-template let-col let-data="rowData" pTemplate="editor">
+            <input pInputText type="text" [(ngModel)]="data[col.field].inventoryAmount" [ngModelOptions]="{standalone: true}" />
+          </ng-template>
+        </p-column>
+        <p-column field="sellPrice" header="价格" [editable]="true"></p-column>
+        <p-column field="orderClosingTime" header="过期时间" [editable]="true">
+          <ng-template let-col let-data="rowData" pTemplate="body">
+            {{ data[col.field]|date: 'yyyy-MM-dd' }}
+          </ng-template>
+          <ng-template let-col let-data="rowData" pTemplate="editor">
+            <p-calendar [(ngModel)]="data[col.field]" [ngModelOptions]="{standalone: true}" appendTo="body" [locale]="en" readonlyInput="readonlyInput" dateFormat="yy-mm-dd" dataType="string"></p-calendar>
+          </ng-template>
+        </p-column>
+        <p-column field="" header="操作">
+          <ng-template pTemplate="body" let-index="rowIndex">
+            <button pButton type="button" (click)="del(index)" class="ui-button-warning" label="删除"></button>
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+    </div>
+  </div>
+  <div class="form-group middler">
+    <label class="control-label">商品参数</label>
+    <div class="">
+      <textarea id="specificationsModel" name="specificationsModel" [(ngModel)]="specificationsModel" rows="5" class="form-control" placeholder="请输入商品参数，用回车分隔"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label">品牌</label>
+    <div class="">
+      <input id="brand" name="brand" [(ngModel)]="brand" type="text" class="form-control" placeholder="">
+    </div>
+  </div>
+  <div class="form-group wider">
+    <label class="control-label">品牌图片</label>
+    <div class="">
+      <p class="help-block">(建议上传图片分辨率：160*160)</p>
+      <div class="multiple-file-upload-component">
+        <div class="img-display">
+          <div class="img-item" *ngFor="let image of images; let i=index">
+            <div class="img-box" *ngIf="image.imgType == 3">
+              <img src="{{image.imgName}}">
+              <span class="delBtn" (click)="delImg(i)" aria-hidden="true">&times;</span>
+            </div>
+          </div>
+        </div>
+        <div class="up-group">
+          <input type="file" class="file-input" (change)="uploadPreviewFile($event, 3)" >
+          <button class="btn btn-primary" type="button"><i class="fa fa-cloud-upload"></i> 上传图片</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group middler">
+    <label class="control-label">品牌描述</label>
+    <div class="">
+      <textarea id="brandDescription" name="brandDescription" [(ngModel)]="brandDescription" rows="5" class="form-control" placeholder=""></textarea>
+    </div>
+  </div>
+  <div class="form-group wider">
+    <label class="control-label">商品详情</label>
+    <div class="">
+      <p class="help-block">(建议上传图片大小不超过1.95MB)</p>
+      <p-editor name="description" [(ngModel)]="description" [style]="{'height':'320px'}"></p-editor>
+    </div>
+  </div>
+  <div class="form-group wider">
+    <label class="control-label"></label>
+    <div class="">
+      <button id="submitBtn" type="button" class="btn btn-primary submit" (click)="save(form.value)">保存</button>
+    </div>
+  </div>
+</form>
+<p-dialog header="选择分类" [(visible)]="display" [width]="284" modal="true">
+  <p-tree [value]="nodes" selectionMode="single" (onNodeSelect)="nodeSelect($event)"></p-tree>
+</p-dialog>
+<p-confirmDialog header="信息" icon="fa fa-exclamation-circle" width="300" #cd>
+  <p-footer>
+    <button pButton type="button" label="确定" (click)="cd.accept()"></button>
+  </p-footer>
+</p-confirmDialog>
